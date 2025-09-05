@@ -1,15 +1,6 @@
 #include <stdio.h>
 #include <string.h>
 
-/**
- * @brief Safely reads a line of input into a buffer.
- * 
- * @param buffer The buffer to store the input.
- * @param buffer_size The size of the buffer.
- * @return 0 if the entire line was read successfully.
- * @return 1 if the input was truncated.
- * @return 2 if there was an error or end-of-file.
- */
 int get_input(char *buffer, size_t buffer_size) {
     // Check for null pointer
     if (buffer == NULL || buffer_size == 0) {
