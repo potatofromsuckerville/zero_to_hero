@@ -22,8 +22,12 @@ int get_input(char *buffer, size_t buffer_size) {
         return 0;
     } else {
         // Input was truncated: clear the leftover characters from stdin
-        int c;
-        while ((c = getchar()) != '\n' && c != EOF) {
+        int c, c2;
+        c = getchar();
+        if (c == '\n') {
+			return 0;
+			}
+        while ((c2 = getchar()) != '\n' && c2 != EOF) {
             // Discard characters until newline or EOF
         }
         return 1; // Signal that input was truncated
@@ -32,7 +36,7 @@ int get_input(char *buffer, size_t buffer_size) {
 
 int main() {
     // REGULAR fgets() SYNTAX (Now Safe):
-    char sentence[9];
+    char sentence[6];
     printf("==== ROBUST fgets() SYNTAX ==== \n");
     printf("Enter a sentence (max %zu chars): \n", sizeof(sentence) - 1);
     
