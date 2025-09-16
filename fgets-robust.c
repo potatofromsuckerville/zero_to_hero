@@ -1,35 +1,38 @@
 #include <stdio.h>
+#include <string.h>
 
 int main() {
 	
-	char sentence[7] = {'\0'};
+	char input[7];
 	printf("==== INPUT VALIDATION (PERSONAL BUILD V1) ==== \n");
-	printf("Enter %zu characters max: \n", sizeof(sentence) - 1);
-	fgets(sentence, sizeof(sentence), stdin);
+	printf("Enter %zu characters max: \n", sizeof(input) - 1);
+	fgets(input, sizeof(input), stdin);
 	
-	for (int i = 0; i < sizeof(sentence); i++) {
-		if (sentence[i] == '\n') {
-			sentence[i] = '\0';
-			if (i == 0) {
-				printf("Empty input. \n");
-				}
-			else {
-				printf("Valid input(less than max). You entered: %s", sentence);
-				}
-			break;
-			}
-			
-		else if (sentence[i] == '\0') {
-			if (getchar() == '\n') {
-				printf("Valid input(exactly max). You entered: %s", sentence);
-				}
-			else {
-				int c;
-				while ((c = getchar()) != '\n' && c != EOF) {
-					}
-				printf("Invalid input(longer than max). Truncation occured. You entered: %s", sentence);
-				}	
-			}
+	int stringLength; 
+	stringLength = strlen(input);
+	
+	if (stringLength == 1) {
+		printf("Empty input \n");
 		}
-		return 0;
+	
+	else if (input[stringLength - 1] == '\n') { // i.e. less than max
+		input[stringLength - 1] = '\0';
+		printf("Valid input (less than max). You entered: %s \n", input);
+		}
+			
+	else {
+		if (getchar() == '\n') {
+			printf("Valid input(exactly max). You entered: %s \n", input);
+			}
+		else {
+			int c;
+			while ((c = getchar()) != '\n' && c != EOF) {
+				}
+			printf("Invalid input. Truncation occured. \n");
+			}	
+		}		
+	
+	return 0;
+	
 	}
+
